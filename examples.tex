@@ -1,0 +1,25 @@
+\documentclass{article}
+
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usetikzlibrary{
+  calc,       % perform calculations within TikZ
+  tikz-layers % draw on different layers
+  }
+
+\begin{document}
+
+\begin{figure}[h!]
+    \centering
+    \input{templates/tonnetz.tex}
+  \end{figure}
+
+\pagebreak
+
+\begin{figure}[h!]
+    \centering
+    \input{templates/circle_of_fifths.tex}
+\end{figure}
+
+\end{document}

@@ -4,8 +4,8 @@ Example TikZ code for generating plots in LaTeX. The generated figures (see exam
 
 ## Tonnetz
 
-![example](tonnetz.png)
+![example](img/tonnetz.png)
 
 ## Circle of Fifths
 
-![example](circle_of_fifths.png)
+![example](img/circle_of_fifths.png)
