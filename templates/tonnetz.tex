@@ -1,7 +1,7 @@
 % declare layers and specify ordering
 \pgfdeclarelayer{bbg}       % behind background
 \pgfdeclarelayer{bg}        % background
-\pgfdeclarelayer{main}        % main layer
+\pgfdeclarelayer{main}      % main layer
 \pgfdeclarelayer{fg}        % foreground
 \pgfdeclarelayer{bfg}       % before foreground
 \pgfsetlayers{bbg,bg,main,fg,bfg}
@@ -11,6 +11,7 @@
 \def\maxx{5}
 \def\miny{-2}
 \def\maxy{4}
+
 % draw hexagons (comment out for not plotting)
 \def\withhex{}
 \newcommand*{\hex}[1]{
@@ -29,7 +30,6 @@
 
 \tikzstyle{tone}=[circle, draw, fill=white, minimum size=2.5em]
 
-\scalebox{0.7}{
 \begin{tikzpicture}[scale=2]
 
   % create the basic grid on main layer
@@ -76,7 +76,7 @@
   
   % create tone names on topmost layer
   \begin{pgfonlayer}{bfg}
-    \foreach \nodename\name/\fifths/\thirds in {
+    \foreach \nodename/\name/\fifths/\thirds in {
       A+/{A$\sharp$}/-2/3, E+/{E$\sharp$}/-1/3, B+/{B$\sharp$}/0/3, F++/{F$\sharp\sharp$}/1/3, C++/{C$\sharp\sharp$}/2/3, G++/{G$\sharp\sharp$}/3/3,
       F+/{F$\sharp$}/-2/2, C+/{C$\sharp$}/-1/2, G+/{G$\sharp$}/0/2, D+/{D$\sharp$}/1/2, A+/{A$\sharp$}/2/2, E+/{E$\sharp$}/3/2,
       A/A/-1/1, E/E/0/1, B/B/1/1, F+/{F$\sharp$}/2/1, C+/{C$\sharp$}/3/1, G+/{G$\sharp$}/4/1,
@@ -87,7 +87,6 @@
     }
   \end{pgfonlayer}
   
-  
   % draw some arrows on foreground
   \begin{pgfonlayer}{fg}
     \draw[->, >=stealth, shorten >= 1.5em, shorten <= 1.5em, line width=3pt, BurntOrange] \xycoord{0}{0} -- \xycoord{1}{1};
@@ -95,5 +94,5 @@
     \draw[->, >=stealth, line width=3pt, BrickRed] \xycoord{0.5}{1.5} -- \xycoord{1.5}{1.5};
     \draw[->, >=stealth, line width=3pt, OliveGreen] \xycoord{-0.75}{2.5} -- \xycoord{1.25}{2.5};
   \end{pgfonlayer}
+
 \end{tikzpicture}
-}
