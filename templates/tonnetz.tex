@@ -83,6 +83,8 @@
 
   %%%% FOREGROUND (+1) %%%%
   
+  %%%% BEFORE FOREGROUND (+2) %%%%
+
   % draw some arrows on foreground
   \begin{pgfonlayer}{fg}
     \draw[->, >=stealth, shorten >= 1.5em, shorten <= 1.5em, line width=3pt, BurntOrange] \xycoord{0}{0} -- \xycoord{1}{1};
@@ -90,8 +92,6 @@
     \draw[->, >=stealth, line width=3pt, BrickRed] \xycoord{0.5}{1.5} -- \xycoord{1.5}{1.5};
     \draw[->, >=stealth, line width=3pt, OliveGreen] \xycoord{-0.75}{2.5} -- \xycoord{1.25}{2.5};
   \end{pgfonlayer}
-  
-  %%%% BEFORE FOREGROUND (+2) %%%%
 
   % create tone names on topmost layer
   \begin{pgfonlayer}{bfg}
