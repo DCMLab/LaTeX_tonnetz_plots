@@ -6,7 +6,7 @@
 \pgfdeclarelayer{bfg}       % before foreground
 \pgfsetlayers{bbg,bg,main,fg,bfg}
   
-% adjust size
+% adjust size (TODO: replace by units in fifths (x) and thirds (y))
 \def\minx{-2}
 \def\maxx{5}
 \def\miny{-2}
@@ -15,6 +15,7 @@
 
 %%%% BEHIND BACKGROUND (-2) %%%%
 
+% TODO: add chord/key labels at hexagon junctions
 % draw hexagons (comment out for not plotting)
 \def\withhex{}
 \newcommand*{\hex}[1]{
@@ -37,6 +38,7 @@
 
   %%%% MAIN LAYER (0) %%%%
 
+  % TODO: base grid and coordinates on fifths/thirds locations
   % create the basic grid on main layer
   \begin{pgfonlayer}{main}
     \foreach \x in {-10,...,10} {
@@ -93,6 +95,7 @@
     \draw[->, >=stealth, line width=3pt, OliveGreen] \xycoord{-0.75}{2.5} -- \xycoord{1.25}{2.5};
   \end{pgfonlayer}
 
+  % TODO: put labels on fifths/third locations
   % create tone names on topmost layer
   \begin{pgfonlayer}{bfg}
     \foreach \nodename/\name/\fifths/\thirds in {
