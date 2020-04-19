@@ -12,6 +12,9 @@
 \def\miny{-2}
 \def\maxy{4}
 
+
+%%%% BEHIND BACKGROUND (-2) %%%%
+
 % draw hexagons (comment out for not plotting)
 \def\withhex{}
 \newcommand*{\hex}[1]{
@@ -31,6 +34,8 @@
 \tikzstyle{tone}=[circle, draw, fill=white, minimum size=2.5em]
 
 \begin{tikzpicture}[scale=2]
+
+  %%%% MAIN LAYER (0) %%%%
 
   % create the basic grid on main layer
   \begin{pgfonlayer}{main}
@@ -69,11 +74,25 @@
     }
   \end{pgfonlayer}
 
+  %%%% BACKGROUND (-1) %%%%
+
   % coloured areas on background
   \begin{pgfonlayer}{bg}
     \draw[fill=BrickRed, opacity=0.3] \xycoord{0}{0} -- \xycoord{2}{0} -- \xycoord{2}{1} -- \xycoord{0}{1} -- cycle;
   \end{pgfonlayer}
+
+  %%%% FOREGROUND (+1) %%%%
   
+  % draw some arrows on foreground
+  \begin{pgfonlayer}{fg}
+    \draw[->, >=stealth, shorten >= 1.5em, shorten <= 1.5em, line width=3pt, BurntOrange] \xycoord{0}{0} -- \xycoord{1}{1};
+    \draw[->, >=stealth, line width=3pt, RoyalBlue] \xycoordcenterbelow{1}{1} -- \xycoordcenterabove{3}{0};
+    \draw[->, >=stealth, line width=3pt, BrickRed] \xycoord{0.5}{1.5} -- \xycoord{1.5}{1.5};
+    \draw[->, >=stealth, line width=3pt, OliveGreen] \xycoord{-0.75}{2.5} -- \xycoord{1.25}{2.5};
+  \end{pgfonlayer}
+  
+  %%%% BEFORE FOREGROUND (+2) %%%%
+
   % create tone names on topmost layer
   \begin{pgfonlayer}{bfg}
     \foreach \nodename/\name/\fifths/\thirds in {
@@ -85,14 +104,6 @@
     } {
       \node[tone] (\nodename) at \xycoord{\fifths}{\thirds} {\name};
     }
-  \end{pgfonlayer}
-  
-  % draw some arrows on foreground
-  \begin{pgfonlayer}{fg}
-    \draw[->, >=stealth, shorten >= 1.5em, shorten <= 1.5em, line width=3pt, BurntOrange] \xycoord{0}{0} -- \xycoord{1}{1};
-    \draw[->, >=stealth, line width=3pt, RoyalBlue] \xycoordcenterbelow{1}{1} -- \xycoordcenterabove{3}{0};
-    \draw[->, >=stealth, line width=3pt, BrickRed] \xycoord{0.5}{1.5} -- \xycoord{1.5}{1.5};
-    \draw[->, >=stealth, line width=3pt, OliveGreen] \xycoord{-0.75}{2.5} -- \xycoord{1.25}{2.5};
   \end{pgfonlayer}
 
 \end{tikzpicture}

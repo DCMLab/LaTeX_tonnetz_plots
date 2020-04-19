@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  19 APR 2020 12:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  19 APR 2020 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -446,9 +446,9 @@ ABD: EveryShipout initializing macros (./templates/tonnetz.tex
 \pgf@layerbox@bfg=\box44
 \pgf@layerboxsaved@bfg=\box45
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 87.
+(Font)              <7> on input line 106.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 87.
+(Font)              <5> on input line 106.
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./templates/circle_of_fif
@@ -457,7 +457,7 @@ ths.tex)
 Here is how much of TeX's memory you used:
  12311 strings out of 492982
  248236 string characters out of 6134897
- 319389 words of memory out of 5000000
+ 320412 words of memory out of 5000000
  15666 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
