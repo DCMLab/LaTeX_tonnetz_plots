@@ -1,0 +1,110 @@
+\documentclass{standalone}
+
+\usepackage{bnumexpr}
+\usepackage{pgfmath}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usetikzlibrary{
+  shapes, % for hexagons
+  calc    % perform calculations within TikZ
+}
+
+\begin{document}
+
+%%%% DEFINITIONS
+
+% transform fifth/third coordinate to points on the Tonnetz
+% \newcommand*{\PF_MT}[2]{
+%   \pgfmathsetmacro{\f}{#1+cos(60)*#2}
+%   \pgfmathsetmacro{\t}{sin(60)*#2}
+% }
+
+% declare layers and specify ordering
+\pgfdeclarelayer{bbg}       % behind background
+\pgfdeclarelayer{bg}        % background
+\pgfdeclarelayer{main}      % main layer
+\pgfdeclarelayer{fg}        % foreground
+\pgfdeclarelayer{bfg}       % before foreground
+\pgfsetlayers{bbg,bg,main,fg,bfg}
+
+% adjust size
+\def\minx{-2}   % descending perfect fifths from C = 0
+\def\maxx{2}    % ascending perfect fifths from C = 0
+\def\miny{-2}   % descending major thirds from C = 0
+\def\maxy{2}    % ascending major thirds from C = 0
+
+% Diatonics
+\def\diatonic{F, C, G, D, A, E, B}
+\def\doubleflats{F$\flat\flat$, C$\flat\flat$, G$\flat\flat$, D$\flat\flat$, A$\flat\flat$, E$\flat\flat$, B$\flat\flat$}
+\def\flats{F$\flat$, C$\flat$, G$\flat$, D$\flat$, A$\flat$, E$\flat$, B$\flat$}
+\def\sharps{F$\sharp$, C$\sharp$, G$\sharp$, D$\sharp$, A$\sharp$, E$\sharp$, B$\sharp$}
+\def\doublesharps{F$\sharp\sharp$, C$\sharp\sharp$, G$\sharp\sharp$, D$\sharp\sharp$, A$\sharp\sharp$, E$\sharp\sharp$, B$\sharp\sharp$}
+
+% line of fifths
+\newcommand*{\LoF}{\doubleflats,\flats,\diatonic,\sharps}
+
+% access lists by index
+\newcommand*\GetItem[2]{\StrBetween[#2,\number\numexpr#2+1]{,#1,},,\par}%
+
+%%%% STYLES
+
+\tikzstyle{tone}=[circle, draw=black, fill=white, minimum size=3em]
+\tikzstyle{interval}=[draw=black, thick]
+\tikzstyle{hexagon}=[draw=black!9, fill=black!4,regular polygon, regular polygon sides=6, rotate=30]
+
+\begin{tikzpicture}[scale=2]
+    \foreach \x in {\minx, ..., \maxx} {
+        \foreach \y [evaluate=\y as \z using {int(\x+4*\y+16)}] in {\miny, ..., \maxy} { 
+
+            %%% TODO: CREATE (INVISIBLE COORDINATES)
+
+            % get accidentals
+            % if divmod(z,7) = 0 => ""
+            % else if divmod(z,7)< 0 => res * \flat
+            % else if divmod(z,7) > 0 => res * \sharp
+
+            % transform coordinates
+            \ifthenelse{\isodd{\y}}{
+                \pgfmathsetmacro{\xx}{(\x)+cos(60)*\y)} % *mod(\y+100,2)
+                \pgfmathsetmacro{\yy}{sin(60)*\y}
+            }{
+                \pgfmathsetmacro{\xx}{(\x)+cos(60)*\y} % *mod(\y+100,2)
+                \pgfmathsetmacro{\yy}{sin(60)*\y}
+            }
+
+            % get label
+            \def\l{\GetItem{\LoF}{\z}}
+
+            draw labels (pitch classes)
+            \begin{pgfonlayer}{fg}
+                \node [tone] at (\xx,\yy) {\l};
+            \end{pgfonlayer}
+
+            % draw hexagons
+            \begin{pgfonlayer}{bg}
+                \node[hexagon,scale=5.5] at (\xx,\yy) {};
+            \end{pgfonlayer}
+
+            \begin{pgfonlayer}{main}
+                \ifthenelse{\x<\maxx-1}{
+                    \draw [interval] (\xx, \yy) -- (\xx+1, \yy); % P5s
+                }{}
+            %     \ifthenelse{\x<\maxx-1\AND\y<\maxy-1}{
+            %         \draw [interval] (\xx, \yy) -- (\xx, \yy+1); % M3s
+            %     }{}
+                \ifthenelse{\x<\maxx-1}{
+                    \draw [interval] (\xx, \yy) -- (\xx, \yy); % m3s
+                }{}
+            \end{pgfonlayer}
+
+    
+
+            
+        }
+    }
+
+\end{tikzpicture}
+
+\end{document}
