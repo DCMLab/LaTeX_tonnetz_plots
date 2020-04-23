@@ -15,12 +15,6 @@
 
 %%%% DEFINITIONS
 
-% transform fifth/third coordinate to points on the Tonnetz
-% \newcommand*{\PF_MT}[2]{
-%   \pgfmathsetmacro{\f}{#1+cos(60)*#2}
-%   \pgfmathsetmacro{\t}{sin(60)*#2}
-% }
-
 % declare layers and specify ordering
 \pgfdeclarelayer{bbg}       % behind background
 \pgfdeclarelayer{bg}        % background
@@ -41,9 +35,16 @@
 \def\flats{F$\flat$, C$\flat$, G$\flat$, D$\flat$, A$\flat$, E$\flat$, B$\flat$}
 \def\sharps{F$\sharp$, C$\sharp$, G$\sharp$, D$\sharp$, A$\sharp$, E$\sharp$, B$\sharp$}
 \def\doublesharps{F$\sharp\sharp$, C$\sharp\sharp$, G$\sharp\sharp$, D$\sharp\sharp$, A$\sharp\sharp$, E$\sharp\sharp$, B$\sharp\sharp$}
+% get accidentals
+% if divmod(z,7) = 0 => ""
+% else if divmod(z,7)< 0 => res * \flat
+% else if divmod(z,7) > 0 => res * \sharp
 
 % line of fifths
 \newcommand*{\LoF}{\doubleflats,\flats,\diatonic,\sharps,\doublesharps}
+
+% Tonnetz coordinates in x=fifths and y=major thirds
+\newcommand*{\ftcoord}[2]{($#1*(1,0)+#2*(60:1)$)}
 
 % access lists by index
 \newcommand*\GetItem[2]{\StrBetween[#2,\number\numexpr#2+1]{,#1,},,\par}%
@@ -58,44 +59,28 @@
     \foreach \x in {\minx, ..., \maxx} {
         \foreach \y [evaluate=\y as \z using {int(\x+4*\y+16)}] in {\miny, ..., \maxy} { 
 
-            %%% TODO: CREATE (INVISIBLE COORDINATES)
-
-            % get accidentals
-            % if divmod(z,7) = 0 => ""
-            % else if divmod(z,7)< 0 => res * \flat
-            % else if divmod(z,7) > 0 => res * \sharp
-
-            % transform coordinates
-            \ifthenelse{\isodd{\y}}{
-                \pgfmathsetmacro{\xx}{(\x)+cos(60)*\y)} % *mod(\y+100,2)
-                \pgfmathsetmacro{\yy}{sin(60)*\y}
-            }{
-                \pgfmathsetmacro{\xx}{(\x)+cos(60)*\y} % *mod(\y+100,2)
-                \pgfmathsetmacro{\yy}{sin(60)*\y}
-            }
-
             % get label
             \def\l{\GetItem{\LoF}{\z}}
 
-            draw labels (pitch classes)
+            % draw labels (pitch classes)
             \begin{pgfonlayer}{fg}
-                \node [tone] at (\xx,\yy) {\l};
+                \node [tone] at \ftcoord{\x}{\y} {\l};
             \end{pgfonlayer}
 
             % draw hexagons
             \begin{pgfonlayer}{bg}
-                \node[hexagon,scale=5.5] at (\xx,\yy) {};
+                \node[hexagon,scale=5.5] at \ftcoord{\x}{\y} {};
             \end{pgfonlayer}
 
             \begin{pgfonlayer}{main}
                 \ifthenelse{\x<\maxx-1}{
-                    \draw [interval] (\xx, \yy) -- (\xx+1, \yy); % P5s
+                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x+1}{\y}; % P5s
                 }{}
-            %     \ifthenelse{\x<\maxx-1\AND\y<\maxy-1}{
-            %         \draw [interval] (\xx, \yy) -- (\xx, \yy+1); % M3s
-            %     }{}
-                \ifthenelse{\x<\maxx-1}{
-                    \draw [interval] (\xx, \yy) -- (\xx, \yy); % m3s
+                \ifthenelse{\y<\maxy}{
+                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x}{\y+1}; % M3s
+                }{}
+                \ifthenelse{\x>\minx\AND\y<\maxy}{
+                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x-1}{\y+1}; % m3s
                 }{}
             \end{pgfonlayer}
             
