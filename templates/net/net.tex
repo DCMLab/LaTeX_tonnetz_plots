@@ -72,6 +72,7 @@
                 \node[hexagon,scale=5.5] at \ftcoord{\x}{\y} {};
             \end{pgfonlayer}
 
+            % draw intervals
             \begin{pgfonlayer}{main}
                 \ifthenelse{\x<\maxx-1}{
                     \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x+1}{\y}; % P5s
@@ -83,7 +84,6 @@
                     \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x-1}{\y+1}; % m3s
                 }{}
             \end{pgfonlayer}
-            
         }
     }
 
