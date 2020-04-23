@@ -30,10 +30,10 @@
 \pgfsetlayers{bbg,bg,main,fg,bfg}
 
 % adjust size
-\def\minx{-2}   % descending perfect fifths from C = 0
-\def\maxx{2}    % ascending perfect fifths from C = 0
-\def\miny{-2}   % descending major thirds from C = 0
-\def\maxy{2}    % ascending major thirds from C = 0
+\def\minx{-3}   % descending perfect fifths from C = 0
+\def\maxx{3}    % ascending perfect fifths from C = 0
+\def\miny{-3}   % descending major thirds from C = 0
+\def\maxy{3}    % ascending major thirds from C = 0
 
 % Diatonics
 \def\diatonic{F, C, G, D, A, E, B}
@@ -43,7 +43,7 @@
 \def\doublesharps{F$\sharp\sharp$, C$\sharp\sharp$, G$\sharp\sharp$, D$\sharp\sharp$, A$\sharp\sharp$, E$\sharp\sharp$, B$\sharp\sharp$}
 
 % line of fifths
-\newcommand*{\LoF}{\doubleflats,\flats,\diatonic,\sharps}
+\newcommand*{\LoF}{\doubleflats,\flats,\diatonic,\sharps,\doublesharps}
 
 % access lists by index
 \newcommand*\GetItem[2]{\StrBetween[#2,\number\numexpr#2+1]{,#1,},,\par}%
