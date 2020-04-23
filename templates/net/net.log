@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  23 APR 2020 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  23 APR 2020 10:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -437,9 +437,9 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no ) in font nullfont!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 106.
+(Font)              <7> on input line 103.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 106.
+(Font)              <5> on input line 103.
 Missing character: There is no - in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no - in font nullfont!
@@ -1102,7 +1102,7 @@ Missing character: There is no ) in font nullfont!
 Here is how much of TeX's memory you used:
  15160 strings out of 492982
  318506 string characters out of 6134897
- 417635 words of memory out of 5000000
+ 417629 words of memory out of 5000000
  18447 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
