@@ -28,12 +28,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-INPUT /usr/share/texlive/texmf-dist/tex/latex/bnumexpr/bnumexpr.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/bnumexpr/bnumexpr.sty
-INPUT /usr/share/texlive/texmf-dist/tex/generic/xint/xintcore.sty
-INPUT /usr/share/texlive/texmf-dist/tex/generic/xint/xintcore.sty
-INPUT /usr/share/texlive/texmf-dist/tex/generic/xint/xintkernel.sty
-INPUT /usr/share/texlive/texmf-dist/tex/generic/xint/xintkernel.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
