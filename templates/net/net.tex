@@ -43,10 +43,13 @@
 \newcommand*{\LoF}{\doubleflats,\flats,\diatonic,\sharps,\doublesharps}
 
 % Tonnetz coordinates in x=fifths and y=major thirds
-\newcommand*{\ftcoord}[2]{($#1*(1,0)+#2*(60:1)$)}
+\newcommand*{\xycoord}[2]{($#1*(1,0)+#2*(60:1)$)}
 
 % access lists by index
 \newcommand*\GetItem[2]{\StrBetween[#2,\number\numexpr#2+1]{,#1,},,\par}%
+
+% \newcommand*{\Triad}[3]{\draw [fill=orange!4] ({#1}) -- (0,1) -- (1,0) -- cycle;}
+% \newcommand*{\Arrow}[2]{\draw [->, >=stealth, thick] (0,0) -- (0,1);}
 
 %%%% STYLES
 
@@ -63,24 +66,24 @@
 
             % draw labels (pitch classes)
             \begin{pgfonlayer}{fg}
-                \node [tone] at \ftcoord{\x}{\y} {\l};
+                \node [tone] at \xycoord{\x}{\y} {\l};
             \end{pgfonlayer}
 
             %%% draw hexagons
             \begin{pgfonlayer}{bg}
-                \node[hexagon,scale=5.8] at \ftcoord{\x}{\y} {};
+                \node[hexagon,scale=5.8] at \xycoord{\x}{\y} {};
             \end{pgfonlayer}
 
             %%% draw intervals
             \begin{pgfonlayer}{main}
                 \ifthenelse{\x<\maxx-1}{
-                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x+1}{\y}; % P5s
+                    \draw [interval] \xycoord{\x}{\y} -- \xycoord{\x+1}{\y}; % P5s
                 }{}
                 \ifthenelse{\y<\maxy}{
-                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x}{\y+1}; % M3s
+                    \draw [interval] \xycoord{\x}{\y} -- \xycoord{\x}{\y+1}; % M3s
                 }{}
                 \ifthenelse{\x>\minx\AND\y<\maxy}{
-                    \draw [interval] \ftcoord{\x}{\y} -- \ftcoord{\x-1}{\y+1}; % m3s
+                    \draw [interval] \xycoord{\x}{\y} -- \xycoord{\x-1}{\y+1}; % m3s
                 }{}
             \end{pgfonlayer}
         }
